@@ -14,7 +14,7 @@ const initialShoppingList = [
     id: 2,
     name: 'beans',
     count: 500,
-    completed: false,
+    completed: true,
   },
   {
     id: 3,

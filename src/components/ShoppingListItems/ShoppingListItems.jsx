@@ -6,7 +6,11 @@ export default function ShoppingListItems({ shoppingList }) {
     <div>
       {shoppingList.map(({ name, id, count, completed }) => (
         <div key={id}>
-          <span>{name}</span>
+          <span>count:{count} </span>
+          <span>{name} </span>
+          <span>
+            <input type="checkbox" checked={completed} />
+          </span>
         </div>
       ))}
     </div>
