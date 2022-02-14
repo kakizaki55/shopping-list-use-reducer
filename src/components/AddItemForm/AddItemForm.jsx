@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function AddItemForm() {
+export default function AddItemForm({ addNewItem }) {
+  const [itemName, setItemName] = useState('');
+  const [count, setCount] = useState(0);
+  console.log(itemName, count);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('inside handle submit');
+    addNewItem();
   };
   return (
     <div>
-      <form>
-        <input type="text"></input>
-        <button
-          onClick={(e) => {
-            handleSubmit(e);
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
+        <input
+          type="text"
+          onChange={(e) => {
+            setItemName(e.target.value);
           }}
-        >
-          add Item
-        </button>
+        />
+        <input
+          type="number"
+          onChange={(e) => {
+            setCount(e.target.value);
+          }}
+        />
+        <button>add Item</button>
       </form>
     </div>
   );
