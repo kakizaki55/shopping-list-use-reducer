@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function ShoppingListItems({ shoppingList }) {
-  console.log({ shoppingList });
+export default function ShoppingListItems({ shoppingList, handleDelete }) {
   return (
     <div>
       {shoppingList.map(({ name, id, count, completed }) => (
@@ -11,7 +10,7 @@ export default function ShoppingListItems({ shoppingList }) {
           <span>
             <input type="checkbox" />
           </span>
-          <button>delete</button>
+          <button onClick={handleDelete}>delete</button>
         </div>
       ))}
     </div>

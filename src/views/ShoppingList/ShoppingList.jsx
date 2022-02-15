@@ -24,10 +24,13 @@ const initialShoppingList = [
   },
 ];
 
-const itemReducer = (state, action) => {
-  switch (action.type) {
+const itemReducer = (state, { type, name, count, id }) => {
+  switch (type) {
     case 'add':
-      return [...state, { name: action.name, count: action.count }];
+      return [...state, { name, count, id, completed: false }];
+      break;
+    default:
+      throw new Error(`type ${type} is not a valid type`);
   }
 };
 
@@ -39,15 +42,19 @@ export default function ShoppingList() {
       type: 'add',
       name,
       count,
-      id: itemList.length,
+      id: itemList.length + 1,
     });
   };
-
+  const handleDelete = () => {
+    dispatch({
+      type: 'delete',
+    });
+  };
   return (
     <div className={style.shoppingListView}>
       <h1>Shopping list</h1>
       <AddItemForm addNewItem={addNewItem} />
-      <ShoppingListItems shoppingList={itemList} />
+      <ShoppingListItems shoppingList={itemList} handleDelete={handleDelete} />
     </div>
   );
 }
