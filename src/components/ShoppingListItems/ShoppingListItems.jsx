@@ -9,8 +9,9 @@ export default function ShoppingListItems({ shoppingList }) {
           <span>count:{count} </span>
           <span>{name} </span>
           <span>
-            <input type="checkbox" checked={completed} />
+            <input type="checkbox" />
           </span>
+          <button>delete</button>
         </div>
       ))}
     </div>

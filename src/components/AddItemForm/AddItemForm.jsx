@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 export default function AddItemForm({ addNewItem }) {
   const [itemName, setItemName] = useState('');
   const [count, setCount] = useState(0);
-  console.log(itemName, count);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addNewItem();
+    addNewItem(itemName, count);
+    setCount(0);
+    setItemName('');
   };
   return (
     <div>
@@ -17,12 +19,14 @@ export default function AddItemForm({ addNewItem }) {
       >
         <input
           type="text"
+          value={itemName}
           onChange={(e) => {
             setItemName(e.target.value);
           }}
         />
         <input
           type="number"
+          value={count}
           onChange={(e) => {
             setCount(e.target.value);
           }}

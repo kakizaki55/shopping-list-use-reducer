@@ -14,7 +14,7 @@ const initialShoppingList = [
     id: 2,
     name: 'beans',
     count: 500,
-    completed: true,
+    completed: false,
   },
   {
     id: 3,
@@ -24,19 +24,30 @@ const initialShoppingList = [
   },
 ];
 
+const itemReducer = (state, action) => {
+  switch (action.type) {
+    case 'add':
+      return [...state, { name: action.name, count: action.count }];
+  }
+};
+
 export default function ShoppingList() {
   const [itemList, dispatch] = useReducer(itemReducer, initialShoppingList);
-  const itemReducer = () => {};
 
-  const handleAddNewItem = (newItem) => {
-    console.log('inside add new item');
+  const addNewItem = (name, count) => {
+    dispatch({
+      type: 'add',
+      name,
+      count,
+      id: itemList.length,
+    });
   };
 
   return (
     <div className={style.shoppingListView}>
       <h1>Shopping list</h1>
-      <AddItemForm addNewItem={handleAddNewItem} />
-      <ShoppingListItems shoppingList={initialShoppingList} />
+      <AddItemForm addNewItem={addNewItem} />
+      <ShoppingListItems shoppingList={itemList} />
     </div>
   );
 }
