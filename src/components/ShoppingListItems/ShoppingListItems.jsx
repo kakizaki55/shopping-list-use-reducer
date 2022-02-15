@@ -1,9 +1,10 @@
 import React from 'react';
+import { useState } from 'react';
 
 export default function ShoppingListItems({ shoppingList, handleDelete }) {
   return (
     <div>
-      {shoppingList.map(({ name, id, count, completed }) => (
+      {shoppingList.map(({ name, id, count, completed, isEditing }) => (
         <div key={id}>
           <span>count:{count} </span>
           <span>{name} </span>
@@ -17,6 +18,10 @@ export default function ShoppingListItems({ shoppingList, handleDelete }) {
             }}
           >
             delete
+          </button>
+
+          <button value={id} onClick={() => (isEditing = true)}>
+            edit
           </button>
         </div>
       ))}

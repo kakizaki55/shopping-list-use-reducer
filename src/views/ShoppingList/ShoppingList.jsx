@@ -27,14 +27,15 @@ const initialShoppingList = [
 const itemReducer = (state, { type, name, count, id }) => {
   switch (type) {
     case 'add':
-      return [...state, { name, count, id, completed: false }];
+      return [
+        ...state,
+        { name, count, id, completed: false, isEditing: false },
+      ];
 
     case 'delete':
       const newState = state.filter((item) => {
-        console.log(item.id, id);
         return item.id !== Number(id);
       });
-
       return newState;
 
     default:
