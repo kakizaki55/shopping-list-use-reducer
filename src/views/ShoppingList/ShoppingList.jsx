@@ -47,6 +47,15 @@ const itemReducer = (state, { type, name, count, id }) => {
       });
       return newEditState;
 
+    case 'save':
+      const newSaveState = state.filter((item) => {
+        return item.id !== Number(id);
+      });
+      return [
+        ...newSaveState,
+        { name, count, id, completed: false, isEditing: false },
+      ];
+
     default:
       throw new Error(`type ${type} is not a valid type`);
   }
@@ -76,7 +85,15 @@ export default function ShoppingList() {
       id,
     });
   };
-  console.log(itemList);
+  const handleSaveEdit = (name, count, id) => {
+    dispatch({
+      type: 'save',
+      name,
+      count,
+      id,
+    });
+  };
+
   return (
     <div className={style.shoppingListView}>
       <h1>Shopping list</h1>
@@ -85,6 +102,7 @@ export default function ShoppingList() {
         shoppingList={itemList}
         handleDelete={handleDelete}
         handleEdit={handleEdit}
+        handleSaveEdit={handleSaveEdit}
       />
     </div>
   );
