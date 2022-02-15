@@ -38,6 +38,15 @@ const itemReducer = (state, { type, name, count, id }) => {
       });
       return newState;
 
+    case 'edit':
+      const newEditState = state.map((item) => {
+        if (item.id === Number(id)) {
+          item.isEditing = true;
+        }
+        return item;
+      });
+      return newEditState;
+
     default:
       throw new Error(`type ${type} is not a valid type`);
   }
@@ -61,11 +70,22 @@ export default function ShoppingList() {
       id,
     });
   };
+  const handleEdit = (id) => {
+    dispatch({
+      type: 'edit',
+      id,
+    });
+  };
+  console.log(itemList);
   return (
     <div className={style.shoppingListView}>
       <h1>Shopping list</h1>
       <AddItemForm addNewItem={addNewItem} />
-      <ShoppingListItems shoppingList={itemList} handleDelete={handleDelete} />
+      <ShoppingListItems
+        shoppingList={itemList}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+      />
     </div>
   );
 }

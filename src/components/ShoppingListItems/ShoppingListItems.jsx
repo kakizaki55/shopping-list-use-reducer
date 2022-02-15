@@ -1,7 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 
-export default function ShoppingListItems({ shoppingList, handleDelete }) {
+export default function ShoppingListItems({
+  shoppingList,
+  handleDelete,
+  handleEdit,
+}) {
   return (
     <div>
       {shoppingList.map(({ name, id, count, completed, isEditing }) => (
@@ -19,8 +23,13 @@ export default function ShoppingListItems({ shoppingList, handleDelete }) {
           >
             delete
           </button>
-
-          <button value={id} onClick={() => (isEditing = true)}>
+          {/* this is the edit button */}
+          <button
+            value={id}
+            onClick={(e) => {
+              handleEdit(e.target.value);
+            }}
+          >
             edit
           </button>
         </div>
