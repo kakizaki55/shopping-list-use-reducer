@@ -28,7 +28,15 @@ const itemReducer = (state, { type, name, count, id }) => {
   switch (type) {
     case 'add':
       return [...state, { name, count, id, completed: false }];
-      break;
+
+    case 'delete':
+      const newState = state.filter((item) => {
+        console.log(item.id, id);
+        return item.id !== Number(id);
+      });
+
+      return newState;
+
     default:
       throw new Error(`type ${type} is not a valid type`);
   }
@@ -45,9 +53,11 @@ export default function ShoppingList() {
       id: itemList.length + 1,
     });
   };
-  const handleDelete = () => {
+
+  const handleDelete = (id) => {
     dispatch({
       type: 'delete',
+      id,
     });
   };
   return (

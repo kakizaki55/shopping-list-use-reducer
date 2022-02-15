@@ -10,7 +10,14 @@ export default function ShoppingListItems({ shoppingList, handleDelete }) {
           <span>
             <input type="checkbox" />
           </span>
-          <button onClick={handleDelete}>delete</button>
+          <button
+            value={id}
+            onClick={(e) => {
+              handleDelete(e.target.value);
+            }}
+          >
+            delete
+          </button>
         </div>
       ))}
     </div>
