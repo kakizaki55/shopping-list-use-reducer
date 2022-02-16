@@ -41,7 +41,7 @@ export default function ShoppingListItems({
                   setCountEdit(e.target.value);
                 }}
               />
-              <button>save</button>
+              <button data-testid={`save-${id}`}>save</button>
             </form>
           </div>
         ) : (

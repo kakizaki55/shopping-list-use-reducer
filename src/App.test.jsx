@@ -49,4 +49,13 @@ test('testing the edit/delete buttons', async () => {
   const editButton = screen.getByTestId('edit-1');
   expect(editButton).toBeInTheDocument();
   userEvent.click(editButton);
+
+  const editableItem = screen.getByPlaceholderText(/banana/i);
+  screen.debug(editableItem);
+  userEvent.type(editableItem, 'blaw blaw');
+
+  const saveButton = screen.getByTestId('save-1');
+  userEvent.click(saveButton);
+  const newItem = await screen.findByText(/blaw blaw/i);
+  expect(newItem).toBeInTheDocument();
 });
