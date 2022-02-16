@@ -34,3 +34,19 @@ test('just testing the app and its functionalities', () => {
   expect(newItem).toBeInTheDocument();
   expect(newItemCount).toBeInTheDocument();
 });
+
+test('testing the edit/delete buttons', async () => {
+  render(<App />);
+
+  const delButton1 = screen.getByTestId('del-2');
+
+  const itemBeans = screen.getByText(/beans/i);
+
+  userEvent.click(delButton1);
+
+  expect(itemBeans).not.toBeInTheDocument();
+
+  const editButton = screen.getByTestId('edit-1');
+  expect(editButton).toBeInTheDocument();
+  userEvent.click(editButton);
+});
