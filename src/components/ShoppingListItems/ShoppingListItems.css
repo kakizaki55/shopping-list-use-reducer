@@ -1,0 +1,12 @@
+.itemList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 20vh;
+}
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vh;
+  min-width: 60vh;
+}

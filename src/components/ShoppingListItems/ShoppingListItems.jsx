@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import style from './ShoppingListItems.css';
 
 export default function ShoppingListItems({
   shoppingList,
@@ -14,13 +15,14 @@ export default function ShoppingListItems({
     e.preventDefault();
     handleSaveEdit(nameEdit, countEdit, id);
   };
-  console.log(shoppingList);
+
   return (
-    <div>
+    <div className={style.itemList}>
       {shoppingList.map(({ name, id, count, completed, isEditing }) =>
         isEditing ? (
           <div key={id}>
             <form
+              className={style.item}
               onSubmit={(e) => {
                 handleSave(e, id);
               }}
@@ -34,7 +36,6 @@ export default function ShoppingListItems({
               />
               <input
                 type="number"
-                value={countEdit}
                 placeholder={count}
                 onChange={(e) => {
                   setCountEdit(e.target.value);
@@ -44,12 +45,12 @@ export default function ShoppingListItems({
             </form>
           </div>
         ) : (
-          <div key={id}>
-            <span>count:{count} </span>
-            <span>{name} </span>
+          <div className={style.item} key={id}>
             <span>
               <input type="checkbox" />
             </span>
+            <span>{count} </span>
+            <span>{name} </span>
             <button
               value={id}
               onClick={(e) => {

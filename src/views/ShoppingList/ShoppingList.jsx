@@ -96,7 +96,6 @@ export default function ShoppingList() {
 
   return (
     <div className={style.shoppingListView}>
-      <h1>Shopping list</h1>
       <AddItemForm addNewItem={addNewItem} />
       <ShoppingListItems
         shoppingList={itemList}

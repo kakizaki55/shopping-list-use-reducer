@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import style from './AddItemForm.css';
 
 export default function AddItemForm({ addNewItem }) {
   const [itemName, setItemName] = useState('');
@@ -13,18 +14,23 @@ export default function AddItemForm({ addNewItem }) {
   return (
     <div>
       <form
+        className={style.form}
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
+        Item:
         <input
+          className={style.name}
           type="text"
           value={itemName}
           onChange={(e) => {
             setItemName(e.target.value);
           }}
         />
+        How Many?
         <input
+          className={style.count}
           type="number"
           value={count}
           onChange={(e) => {
