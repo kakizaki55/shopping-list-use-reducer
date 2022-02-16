@@ -19,24 +19,28 @@ export default function AddItemForm({ addNewItem }) {
           handleSubmit(e);
         }}
       >
-        Item:
-        <input
-          className={style.name}
-          type="text"
-          value={itemName}
-          onChange={(e) => {
-            setItemName(e.target.value);
-          }}
-        />
-        How Many?
-        <input
-          className={style.count}
-          type="number"
-          value={count}
-          onChange={(e) => {
-            setCount(e.target.value);
-          }}
-        />
+        <label>
+          Item:
+          <input
+            className={style.name}
+            type="text"
+            value={itemName}
+            onChange={(e) => {
+              setItemName(e.target.value);
+            }}
+          />
+        </label>
+        <label>
+          How Many?
+          <input
+            className={style.count}
+            type="number"
+            value={count}
+            onChange={(e) => {
+              setCount(e.target.value);
+            }}
+          />
+        </label>
         <button>add Item</button>
       </form>
     </div>
