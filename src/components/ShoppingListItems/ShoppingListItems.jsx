@@ -17,10 +17,10 @@ export default function ShoppingListItems({
   };
 
   return (
-    <div className={style.itemList}>
+    <ol className={style.itemList}>
       {shoppingList.map(({ name, id, count, completed, isEditing }) =>
         isEditing ? (
-          <div key={id}>
+          <li key={id}>
             <form
               className={style.item}
               onSubmit={(e) => {
@@ -43,9 +43,9 @@ export default function ShoppingListItems({
               />
               <button data-testid={`save-${id}`}>save</button>
             </form>
-          </div>
+          </li>
         ) : (
-          <div className={style.item} key={id}>
+          <li className={style.item} key={id}>
             <span>
               <input type="checkbox" />
             </span>
@@ -70,9 +70,9 @@ export default function ShoppingListItems({
             >
               edit
             </button>
-          </div>
+          </li>
         )
       )}
-    </div>
+    </ol>
   );
 }

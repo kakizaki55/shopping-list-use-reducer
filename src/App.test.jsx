@@ -51,11 +51,17 @@ test('testing the edit/delete buttons', async () => {
   userEvent.click(editButton);
 
   const editableItem = screen.getByPlaceholderText(/banana/i);
-  screen.debug(editableItem);
   userEvent.type(editableItem, 'blaw blaw');
 
   const saveButton = screen.getByTestId('save-1');
   userEvent.click(saveButton);
   const newItem = await screen.findByText(/blaw blaw/i);
   expect(newItem).toBeInTheDocument();
+});
+
+test('just making sure 3 items render on page load', () => {
+  render(<App />);
+  const shoppingList = screen.getByRole('list');
+
+  expect(shoppingList.children).toHaveLength(3);
 });
