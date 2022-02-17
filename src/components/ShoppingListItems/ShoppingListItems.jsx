@@ -17,7 +17,7 @@ export default function ShoppingListItems({
   };
 
   return (
-    <ol className={style.itemList}>
+    <ul className={style.itemList}>
       {shoppingList.map(({ name, id, count, completed, isEditing }) =>
         isEditing ? (
           <li key={id}>
@@ -72,6 +72,6 @@ export default function ShoppingListItems({
           </li>
         )
       )}
-    </ol>
+    </ul>
   );
 }

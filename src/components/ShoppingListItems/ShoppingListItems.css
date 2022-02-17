@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   margin: 20vh;
+  list-style-type: none;
 }
 .item {
   display: flex;

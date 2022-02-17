@@ -110,7 +110,6 @@ export const ItemsProvider = ({ children }) => {
 
 export const useItems = () => {
   const context = useContext(ItemsContext);
-  console.log(context);
   if (context === 'undefined') {
     throw new Error('useEntries must be warped in a EntriesProvider component');
   }
