@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext, createContext } from 'react';
 import { useReducer } from 'react';
 
@@ -56,6 +56,8 @@ const itemReducer = (state, { type, name, count, id }) => {
         ...newSaveState,
         { name, count, id, completed: false, isEditing: false },
       ];
+    case 'delete-all':
+      return [];
 
     default:
       throw new Error(`type ${type} is not a valid type`);
@@ -94,7 +96,13 @@ export const ItemsProvider = ({ children }) => {
       id,
     });
   };
+  const handleDeleteAll = () => {
+    dispatch({
+      type: 'delete-all',
+    });
+  };
   const providerValue = {
+    handleDeleteAll,
     handleDelete,
     handleEdit,
     handleSaveEdit,

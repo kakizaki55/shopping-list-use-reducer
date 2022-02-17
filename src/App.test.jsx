@@ -114,3 +114,20 @@ test('making the header item list numbers change when a new item is added', () =
     /you have 5 items in you shopping cart/i
   );
 });
+
+test('making sure the delete all button to work', () => {
+  render(
+    <ItemsProvider>
+      <App />
+    </ItemsProvider>
+  );
+
+  const deleteAllButton = screen.getByRole('button', {
+    name: /delete all/i,
+  });
+
+  userEvent.click(deleteAllButton);
+  const shoppingList = screen.getByRole('list');
+
+  expect(shoppingList.children).toHaveLength(0);
+});
