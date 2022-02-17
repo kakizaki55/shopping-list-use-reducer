@@ -46,11 +46,11 @@ export default function ShoppingListItems({
           </li>
         ) : (
           <li className={style.item} key={id}>
+            <span>{count} </span>
+            <span>{name} </span>
             <span>
               <input type="checkbox" />
             </span>
-            <span>{count} </span>
-            <span>{name} </span>
             <button
               data-testid={`del-${id}`}
               value={id}
@@ -60,7 +60,6 @@ export default function ShoppingListItems({
             >
               delete
             </button>
-            {/* this is the edit button */}
             <button
               data-testid={`edit-${id}`}
               value={id}

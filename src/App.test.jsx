@@ -1,9 +1,14 @@
 import App from './App';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ItemsProvider } from './context/ItemContext';
 
 test('just testing the app and its functionalities', () => {
-  render(<App />);
+  render(
+    <ItemsProvider>
+      <App />
+    </ItemsProvider>
+  );
 
   const header = screen.getByText(/shopping list/i);
 
@@ -36,7 +41,11 @@ test('just testing the app and its functionalities', () => {
 });
 
 test('testing the edit/delete buttons', async () => {
-  render(<App />);
+  render(
+    <ItemsProvider>
+      <App />
+    </ItemsProvider>
+  );
 
   const delButton1 = screen.getByTestId('del-2');
 
@@ -60,7 +69,11 @@ test('testing the edit/delete buttons', async () => {
 });
 
 test('just making sure 3 items render on page load', () => {
-  render(<App />);
+  render(
+    <ItemsProvider>
+      <App />
+    </ItemsProvider>
+  );
   const shoppingList = screen.getByRole('list');
 
   expect(shoppingList.children).toHaveLength(3);
