@@ -3,7 +3,6 @@ import { useItems } from '../../context/ItemContext';
 
 export default function Header() {
   const { itemList } = useItems();
-  console.log('itemsList', itemList);
 
   return (
     <header>

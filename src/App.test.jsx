@@ -78,3 +78,39 @@ test('just making sure 3 items render on page load', () => {
 
   expect(shoppingList.children).toHaveLength(3);
 });
+
+test('making the header item list numbers change when a new item is added', () => {
+  render(
+    <ItemsProvider>
+      <App />
+    </ItemsProvider>
+  );
+  const itemTextBox = screen.getByRole('textbox', {
+    name: /item:/i,
+  });
+  const numberInput = screen.getByRole('spinbutton', {
+    name: /how many\?/i,
+  });
+
+  userEvent.type(itemTextBox, 'tomato');
+  userEvent.type(numberInput, '4');
+
+  const addButton = screen.getByRole('button', {
+    name: /add item/i,
+  });
+
+  userEvent.click(addButton);
+
+  const headerText1 = screen.getByText(
+    /you have 4 items in you shopping cart/i
+  );
+
+  userEvent.type(itemTextBox, 'popcorn');
+  userEvent.type(numberInput, '100');
+
+  userEvent.click(addButton);
+
+  const headerText2 = screen.getByText(
+    /you have 5 items in you shopping cart/i
+  );
+});
