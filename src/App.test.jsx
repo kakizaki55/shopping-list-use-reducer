@@ -47,7 +47,7 @@ test('testing the edit/delete buttons', async () => {
     </ItemsProvider>
   );
 
-  const delButton1 = screen.getByTestId('del-2');
+  const delButton1 = screen.getByTestId('del-beans');
 
   const itemBeans = screen.getByText(/beans/i);
 
@@ -55,14 +55,14 @@ test('testing the edit/delete buttons', async () => {
 
   expect(itemBeans).not.toBeInTheDocument();
 
-  const editButton = screen.getByTestId('edit-1');
+  const editButton = screen.getByTestId('edit-banana');
   expect(editButton).toBeInTheDocument();
   userEvent.click(editButton);
 
   const editableItem = screen.getByPlaceholderText(/banana/i);
   userEvent.type(editableItem, 'blaw blaw');
 
-  const saveButton = screen.getByTestId('save-1');
+  const saveButton = screen.getByTestId('save-banana');
   userEvent.click(saveButton);
   const newItem = await screen.findByText(/blaw blaw/i);
   expect(newItem).toBeInTheDocument();

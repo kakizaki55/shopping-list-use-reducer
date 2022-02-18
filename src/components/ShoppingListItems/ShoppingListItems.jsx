@@ -41,7 +41,7 @@ export default function ShoppingListItems({
                   setCountEdit(e.target.value);
                 }}
               />
-              <button data-testid={`save-${id}`}>save</button>
+              <button data-testid={`save-${name}`}>save</button>
             </form>
           </li>
         ) : (
@@ -52,7 +52,7 @@ export default function ShoppingListItems({
               <input type="checkbox" />
             </span>
             <button
-              data-testid={`del-${id}`}
+              data-testid={`del-${name}`}
               value={id}
               onClick={(e) => {
                 handleDelete(e.target.value);
@@ -61,7 +61,7 @@ export default function ShoppingListItems({
               delete
             </button>
             <button
-              data-testid={`edit-${id}`}
+              data-testid={`edit-${name}`}
               value={id}
               onClick={(e) => {
                 handleEdit(e.target.value);
