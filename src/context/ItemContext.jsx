@@ -2,24 +2,25 @@ import React, { useEffect } from 'react';
 import { useContext, createContext } from 'react';
 import { useReducer } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { v4 as uuidv4 } from 'uuid';
 
 const ItemsContext = createContext();
 
 const initialShoppingList = [
   {
-    id: 1,
+    id: uuidv4(),
     name: 'banana',
     count: 3,
     completed: false,
   },
   {
-    id: 2,
+    id: uuidv4(),
     name: 'beans',
     count: 500,
     completed: false,
   },
   {
-    id: 3,
+    id: uuidv4(),
     name: 'poki',
     count: 1,
     completed: false,
@@ -36,13 +37,13 @@ const itemReducer = (state, { type, name, count, id }) => {
 
     case 'delete':
       const newState = state.filter((item) => {
-        return item.id !== Number(id);
+        return item.id !== id;
       });
       return newState;
 
     case 'edit':
       const newEditState = state.map((item) => {
-        if (item.id === Number(id)) {
+        if (item.id === id) {
           item.isEditing = true;
         }
         return item;
@@ -51,7 +52,7 @@ const itemReducer = (state, { type, name, count, id }) => {
 
     case 'save':
       const newSaveState = state.filter((item) => {
-        return item.id !== Number(id);
+        return item.id !== id;
       });
       return [
         ...newSaveState,
@@ -81,7 +82,7 @@ export const ItemsProvider = ({ children }) => {
       type: 'add',
       name,
       count,
-      id: itemList.length + 1,
+      id: uuidv4(),
     });
   };
 
