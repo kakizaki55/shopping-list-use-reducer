@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useContext, createContext } from 'react';
 import { useReducer } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const ItemsContext = createContext();
 
@@ -65,7 +66,15 @@ const itemReducer = (state, { type, name, count, id }) => {
 };
 
 export const ItemsProvider = ({ children }) => {
-  const [itemList, dispatch] = useReducer(itemReducer, initialShoppingList);
+  const [storedItemList, setValue] = useLocalStorage(
+    'ITEMS',
+    initialShoppingList
+  );
+  const [itemList, dispatch] = useReducer(itemReducer, storedItemList);
+
+  useEffect(() => {
+    setValue(itemList);
+  }, [itemList, setValue]);
 
   const addNewItem = (name, count) => {
     dispatch({
@@ -101,6 +110,7 @@ export const ItemsProvider = ({ children }) => {
       type: 'delete-all',
     });
   };
+
   const providerValue = {
     handleDeleteAll,
     handleDelete,
@@ -108,6 +118,7 @@ export const ItemsProvider = ({ children }) => {
     handleSaveEdit,
     addNewItem,
     itemList,
+    setValue,
   };
   return (
     <ItemsContext.Provider value={providerValue}>

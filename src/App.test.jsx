@@ -128,6 +128,5 @@ test('making sure the delete all button to work', () => {
 
   userEvent.click(deleteAllButton);
   const shoppingList = screen.getByRole('list');
-
   expect(shoppingList.children).toHaveLength(0);
 });
